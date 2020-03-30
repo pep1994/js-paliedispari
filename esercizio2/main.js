@@ -12,15 +12,14 @@ var outputMsg;
 
  function numberRandom(numberMax, numberMin) {
 
-    return Math.round(Math.random() * (numberMax - numberMin) + numberMin);
+    var number = Math.round(Math.random() * (numberMax - numberMin) + numberMin);
+    return number;
  }
 
 
-// richiamo la funzione
+var numberOne = numberRandom(5, 1); // richiamo funzione salvandomi in una variabile il valore che ritorna
 
-var numberOne = numberRandom(5, 1); // variabile che contiene il valore ritornato dalla funzione, sarà il numero del PC 1
-
-var numberTwo = numberRandom(5, 1); // variabile che contiene il valore ritornato dalla funzione, sarà il numero del PC 2
+var numberTwo = numberRandom(5, 1); // richiamo funzione salvandomi in una variabile il valore che ritorna
 
 
 
@@ -35,45 +34,58 @@ function numberSum(numero1, numero2) {
 
 // richiamo la funzione e assegno ad una variabili il valore ritornato nella funzione
 
-var sumG = numberSum(numberOne, numberTwo);
-console.log(sumG);
+var sumG = numberSum(numberOne, numberTwo); // richiamo funzione salvandomi in una variabile il valore che ritorna
 
 
 // creo una funzione per stabilire il vincitore in base alla somma se è pari o dispari
-function victoryPc() {
+function victoryPc(somma) {
 
-  if (sumG % 2 == 0) {
-    var msg = "La somma dei due numeri è: " + sumG + ", " + "il numero è pari perciò vince il PC 1";
+  if (somma % 2 == 0) {
+    var msg = "La somma dei due numeri è: " + somma + ", " + "il numero è pari perciò vince il PC 1";
 
   } else {
-    msg = "La somma dei due numeri è: " + sumG + ", " + "il numero è dispari perciò vince il PC 2";
+    msg = "La somma dei due numeri è: " + somma + ", " + "il numero è dispari perciò vince il PC 2";
   }
   return msg;
 }
 
-outputMsg = victoryPc();
-console.log(outputMsg);
+outputMsg = victoryPc(sumG); // richiamo funzione salvandomi in una variabile il valore che ritorna
 
 
-
-// output attraverso il clik sul bottone
+// funzione per output attraverso il clik sul bottone
 
 function play() {
 
   var buttonPlay = document.getElementById('button');
-  console.log(button);
-
   buttonPlay.addEventListener('click',
 
     function () {
-      document.getElementById('container').innerHTML = "<h4>" + outputMsg + "</h4>";
-      var ciao = document.getElementById('play-again');
-      ciao.className = "visible";
+      document.getElementById('container').innerHTML = "<h4>" + outputMsg + "</h4>"; // output
+      document.getElementById('play-again').className = "visible"; // aggiunta di classe che fa apparire il pulsante "play again"
+      document.getElementById('button').className = "hidden"; // aggiunta classe che fa sparire il pulsante "play"
+
   });
 
 }
 
-play();
+play(); // richiamo funzione
 
 
-// al click su "play again" riparte la sfida tra i due PC
+// al click su "play again" riparte la sfida tra i due PC e abbiamo l'output del nuovo risultato
+function playAgain() {
+
+  var buttonPlayAgain = document.getElementById('play-again');
+  buttonPlayAgain.addEventListener('click',
+
+    function () {
+      var numberOne2 = numberRandom(5, 1);
+      var numberTwo2 = numberRandom(5, 1);
+      var sumG2 = numberSum(numberOne2, numberTwo2);
+      var outputMsg2 = victoryPc(sumG2);
+      document.getElementById('container').innerHTML = "<h4>" + outputMsg2 + "</h4>"; // output
+
+  });
+
+}
+
+playAgain(); // richiamo funzione
