@@ -1,0 +1,7 @@
+#play-again {
+  opacity: 0;
+}
+
+#play-again.visible {
+  opacity: 1;
+}

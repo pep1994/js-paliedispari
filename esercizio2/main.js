@@ -6,6 +6,8 @@ Generiamo un numero random (sempre da 1 a 5) per il secondo computer.
  Il primo Pc vincerà se la somma sarà pari, mentre se sarà dispari vincerà il secondo PC
  */
 
+var outputMsg;
+
  // creo una funzione che avrà il compito di generare un numero random compreso fra 1 e 5
 
  function numberRandom(numberMax, numberMin) {
@@ -39,12 +41,39 @@ console.log(sumG);
 
 // creo una funzione per stabilire il vincitore in base alla somma se è pari o dispari
 function victoryPc() {
-  
+
   if (sumG % 2 == 0) {
-    console.log("La somma dei due numeri è: " + sumG + ", " + "il numero è pari perciò vince il PC 1");
+    var msg = "La somma dei due numeri è: " + sumG + ", " + "il numero è pari perciò vince il PC 1";
+
   } else {
-    console.log("La somma dei due numeri è: " + sumG + ", " + "il numero è dispari perciò vince il PC 2");
+    msg = "La somma dei due numeri è: " + sumG + ", " + "il numero è dispari perciò vince il PC 2";
   }
+  return msg;
 }
 
-victoryPc();
+outputMsg = victoryPc();
+console.log(outputMsg);
+
+
+
+// output attraverso il clik sul bottone
+
+function play() {
+
+  var buttonPlay = document.getElementById('button');
+  console.log(button);
+
+  buttonPlay.addEventListener('click',
+
+    function () {
+      document.getElementById('container').innerHTML = "<h4>" + outputMsg + "</h4>";
+      var ciao = document.getElementById('play-again');
+      ciao.className = "visible";
+  });
+
+}
+
+play();
+
+
+// al click su "play again" riparte la sfida tra i due PC
